@@ -1,0 +1,38 @@
+//http://espressocode.top/c-library-math-h-functions/
+#include <stdio.h>
+#include <math.h>
+
+int main ()
+
+{
+    double x, y, a, b, h, ret;
+    printf("Enter  a, b, h:");
+    int q = scanf("%lf%lf%lf", &a, &b, &h);
+    x = a;
+    if(q == 3){
+        if ( (a <= b && h < 0) || (a >= b && h > 0) ) printf("Something is wrong\n");
+        else
+
+            do
+            {
+                y = (1.0+x)/(1.0-x);
+                if(x == 1){
+                    printf("We can't divide to 0\n");
+                }
+                else if(y <= 0 ) printf("ln(%lf) - is not defined\n", y);
+                else
+                {
+                    ret = log(y);
+                    printf("ln(%lf) = %lf\n", y, ret);
+                }
+                x = x + h;
+
+            }
+            while((x <= b && h>0 ) || (x >= b && h < 0));
+
+    }
+    else
+        printf("ERROR");
+
+    return 0;
+}
