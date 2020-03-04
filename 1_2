@@ -6,29 +6,38 @@ int main ()
 
 {
     double x, y, a, b, h, ret;
-    printf("Enter  a, b, h:");
+
+    printf("Enter a, b, h: ");
     int q = scanf("%lf%lf%lf", &a, &b, &h);
-    x = a;
     if(q == 3){
         if ( (a <= b && h < 0) || (a >= b && h > 0) ) printf("Something is wrong\n");
         else
 
             do
             {
-                y = (1.0+x)/(1.0-x);
-                if(x == 1){
-                    printf("We can't divide to 0\n");
+                x = a;
+                if(x != 1) {
+                    y = (1.0 + x) / (1.0 - x);
+
+                    if (y <= 0) {
+                        printf("Our function is not defined for x>=1\n");
+                        break;
+                    }
+
+                    else {
+                        ret = log(y);
+                        printf("ln(%lf) = %lf\n", y, ret);
+                    }
+                    a = a + h;
                 }
-                else if(y <= 0 ) printf("ln(%lf) - is not defined\n", y);
-                else
-                {
-                    ret = log(y);
-                    printf("ln(%lf) = %lf\n", y, ret);
+                else {
+                    printf("Our function is not defined for x>=1\n");
+                    break;
                 }
-                x = x + h;
+
 
             }
-            while((x <= b && h>0 ) || (x >= b && h < 0));
+            while((a < b-0.01 && h>0 ) || (a > b-0.01 && h < 0));
 
     }
     else
