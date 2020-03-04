@@ -1,0 +1,37 @@
+//http://espressocode.top/c-library-math-h-functions/
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+
+    double eps, x, old = 0, new = 0, n=0, element = 1;
+
+    printf("Enter  x<1 :");
+    scanf("%lf", &x);
+    if(x < 1) {
+        printf("Enter eps<1:");
+        scanf("%lf", &eps);
+        if(eps < 1) {
+            double buffer;
+            do {
+                old = new;
+
+                buffer = 1.0;
+                for (int i = 0; i < 2 * n + 1; i++) {
+                    buffer *= x;
+                }
+
+                element *= 2 * buffer / (2 * n + 1);
+                new = old + element;
+                n += 1;
+
+            } while (fabs(old - new) > eps);
+
+            printf("Expression: %lf\nln((1+x)/(1-x)): %lf\n", new, log((1 + x) / (1 - x)));
+        }
+        else printf("Eps must be lower then 1\n");
+    }
+    else printf("X must be lower then 1\n");
+
+}
