@@ -9,8 +9,8 @@ int main()
 
     printf("Enter  x<1 :");
     scanf("%lf", &x);
-    if(x < 1) {
-        printf("Enter eps<1:");
+    if((x < 1) && (x >= 0) ) {
+        printf("Enter eps<1:\n");
         scanf("%lf", &eps);
         if(eps < 1) {
             double buffer;
@@ -32,6 +32,6 @@ int main()
         }
         else printf("Eps must be lower then 1\n");
     }
-    else printf("X must be lower then 1\n");
+    else printf(" |x| < 1\n");
 
 }
