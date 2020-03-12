@@ -1,62 +1,65 @@
-#include <stdio.h> 
-#include <stdlib.h> 
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
-#define min 0
-#define max 100
 
-void sort(int *arr, int size) 
-{ 
-    int temp; 
-    for (int i = 0; i < size - 1; i++) 
-{ 
-        for (int j = 0; j < size - i - 1; j++) { 
-            if (arr[j] > arr[j + 1]) { 
-// меняем элементы местами 
-    temp = arr[j]; 
-    arr[j] = arr[j + 1]; 
-    arr[j + 1] = temp; 
-/* 
-сортировка пузырьком 
-*/ 
-            } 
-        } 
-    } 
+void sort(int *arr, int size)
+{
+    int temp;
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    /*
+сортировка пузырьком
+*/
 }
 
-int *create_mas(int N) {
+int *create_mas(int N, int min, int max) {
     int *A = (int*) malloc(N*sizeof(int));
     if (A) {
         for (int i = 0; i < N; i++) {
-                A[i] = rand() % (max-min+1) + min;
+            A[i] = rand() % (max-min+1) + min;
         }
-        } else 
-          return NULL;
-        
-        return A;
+    } else
+        return NULL;
+
+    return A;
 }
 
 
 void main() {
-    int size1 = 5, size2 = 6;
+    int size1, size2, min, max;
+    printf("Enter size1:\n");
+    scanf("%d", &size1);
+    printf("Enter size2:\n");
+    scanf("%d", &size2);
+    printf("Enter min:\n");
+    scanf("%d", &min);
+    printf("Enter max:\n");
+    scanf("%d", &max);
     int size = size1 + size2;
-    
+
     srand(time(NULL));
-    int *A = create_mas(size1); sort(A, size1);
-    int *B = create_mas(size2); sort(B, size2);
-    int *C = create_mas(size);
-    
+    int *A = create_mas(size1, min, max); sort(A, size1);
+    int *B = create_mas(size2, min, max); sort(B, size2);
+    int *C = create_mas(size, min, max);
+
     for (int i = 0; i < size1; i++) C[i] = A[i];
     int k = 0;
-    
+
     for (int j = size1; j < size; j++) {
         C[j] = B[k];
         k++;
     }
-    
+
     sort(C, size);
     for (int i = 0; i < size1; i++) printf("%d ", A[i]); printf("\n");
     for (int i = 0; i < size2; i++) printf("%d ", B[i]); printf("\n");
     for (int i = 0; i < size; i++) printf("%d ", C[i]);
 }
-
-
