@@ -1,19 +1,17 @@
-#include <stdio.h> 
-#include <time.h> 
+#include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
-#define min 0
-#define max 10
 
-int *create_mas(int N) {
+int *create_mas(int N, int min, int max) {
     int *A = (int*) malloc(N*sizeof(int));
     if (A) {
         for (int i = 0; i < N; i++) {
-                A[i] = rand() % (max-min+1) + min;
+            A[i] = rand() % (max-min+1) + min;
         }
-        } else 
-          return NULL;
-        
-        return A;
+    } else
+        return NULL;
+
+    return A;
 }
 
 
@@ -21,26 +19,30 @@ int *create_mas(int N) {
 void main()
 {
     srand(time(NULL));
-    int size;
-    printf("Enter a size of matrix: ");
+    int size, min, max;
+    printf("Enter a size of matrix:\n");
     scanf("%d", &size);
+    printf("Enter floor:\n");
+    scanf("%d", &min);
+    printf("Enter roof:\n");
+    scanf("%d", &max);
     int count = 0;
     int check = 1;
-    int *a = create_mas(size);
+    int *a = create_mas(size, min, max);
     for (int i = 0; i < size; i++) printf("%d ", a[i]);
-    printf("\nРазличные числа: ");
+    printf("\nDifferent nums are: ");
     for (int i = 0; i < size; i++) {
         for (int j = i; j < size; j++) {
             if ( (i != j) && (a[i] == a[j]) ) {
                 j = size;
                 check = 0;
             } }
-            
-            if (check == 1) {
+
+        if (check == 1) {
             count++;
             printf("%d ", a[i]);
-            } else check = 1;
-        
+        } else check = 1;
+
     }
     printf("\nCount: %d", count);
 }
