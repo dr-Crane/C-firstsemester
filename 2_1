@@ -30,26 +30,31 @@ void main()
     printf("Enter a size of matrix:\n");
     scanf("%d", &size);
     printf("Enter floor:\n");
-    scanf("%d", &min);
-    printf("Enter roof:\n");
-    scanf("%d", &max);
-    int count = 0, check = 1;
-    int *a = create_mas(size, min, max);
-    for (int i = 0; i < size; i++) printf("%d ", a[i]);
-    printf("\nDifferent nums are: ");
-    for (int i = 0; i < size; i++) {
-        for (int j = i; j < size; j++) {
-            if ( (i != j) && (a[i] == a[j]) ) {
-                check = 0;
-                break;
-            } }
+    int a = scanf("%d", &min);
+    if(a==1){
+        printf("Enter roof:\n");
+        int b = scanf("%d", &max);
+        if(b == 1) {
+            int count = 0, check = 1;
+            int *a = create_mas(size, min, max);
+            for (int i = 0; i < size; i++) printf("%d ", a[i]);
+            printf("\nDifferent nums are: ");
+            for (int i = 0; i < size; i++) {
+                for (int j = i; j < size; j++) {
+                    if ((i != j) && (a[i] == a[j])) {
+                        check = 0;
+                        break;
+                    }
+                }
 
-        if (check == 1) {
-            count++;
-            printf("%d ", a[i]);
-        } else check = 1;
-
+                if (check == 1) {
+                    count++;
+                    printf("%d ", a[i]);
+                } else check = 1;
+            }
+            printf("\nCount: %d", count);
+            free(a);
+        }
     }
-    printf("\nCount: %d", count);
-    free(a);
+
 }
