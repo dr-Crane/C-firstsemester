@@ -1,3 +1,9 @@
+/*
+ *
+ *  Задан числовой массив А. Подсчитать число разных чисел в А.
+ *
+ */
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -8,9 +14,10 @@ int *create_mas(int N, int min, int max) {
         for (int i = 0; i < N; i++) {
             A[i] = rand() % (max-min+1) + min;
         }
-    } else
+    } else{
+        free(A);
         return NULL;
-
+    }
     return A;
 }
 
@@ -26,16 +33,15 @@ void main()
     scanf("%d", &min);
     printf("Enter roof:\n");
     scanf("%d", &max);
-    int count = 0;
-    int check = 1;
+    int count = 0, check = 1;
     int *a = create_mas(size, min, max);
     for (int i = 0; i < size; i++) printf("%d ", a[i]);
     printf("\nDifferent nums are: ");
     for (int i = 0; i < size; i++) {
         for (int j = i; j < size; j++) {
             if ( (i != j) && (a[i] == a[j]) ) {
-                j = size;
                 check = 0;
+                break;
             } }
 
         if (check == 1) {
@@ -45,4 +51,5 @@ void main()
 
     }
     printf("\nCount: %d", count);
+    free(a);
 }
