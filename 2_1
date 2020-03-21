@@ -55,6 +55,8 @@ void main()
             printf("\nCount: %d", count);
             free(a);
         }
+        printf("ERROR");
     }
+    printf("ERROR");
 
 }
