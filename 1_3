@@ -15,7 +15,6 @@ int main()
             double buffer = x;
             do {
                 old = new;
-                buffer = pow(x, 2*n+1);
                 element *= 2 * buffer / (2 * n + 1);
                 new = old + element;
                 n += 1;
