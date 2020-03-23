@@ -15,7 +15,6 @@ int *create_mas(int N, int min, int max) {
             A[i] = rand() % (max-min+1) + min;
         }
     } else{
-        free(A);
         return NULL;
     }
     return A;
