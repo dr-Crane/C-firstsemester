@@ -60,7 +60,7 @@ void main()
     }
     printf("\n");
     // Вывод матрицы
-    free(matrix); // правка на git
+    free(matrix); 
 
     printf("Count of \"special\" elements in matrix : %d", count);
 
