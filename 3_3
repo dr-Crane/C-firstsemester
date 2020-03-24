@@ -48,9 +48,10 @@ void main()
             sum += matrix[0][i] + matrix[size-1][i] + matrix[i][0] + matrix[i][size-1];
         // Суммируем первый столбец и строку, последний столбец и строку
         // Угловые элементы [0][0], [0][size-1], [size-1][0], [size-1][size-1] суммировались дважды
-        // Надо вычесть их (один раз)
+        // Необходимо вычесть их (один раз)
         sum = sum - matrix[0][0] - matrix[size-1][0] - matrix[0][size-1] - matrix[size-1][size-1];
         printf("\nSum: %d", sum);
+        free(matrix);
     } else {
         printf("ERROR");
     }
