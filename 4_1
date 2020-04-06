@@ -1,37 +1,77 @@
-#include <stdio.h>
+lengthw-j#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-char *tab(char *word, int length){
+int *table(char *word, int lengthw) {
 
-    int *mass = (int*) malloc(length * sizeof(int));
-    for(int i=1; i < length; i++ ){
+    int *mass= (int*) malloc(lengthw*sizeof(int));
 
-            mass[length-i-1] = i;
-            for(int j = length-i; j < length-1; j++) {
-                if (word[length-i-1] == word[j] && i != j && i>1) {
-                    mass[length-i-1] = mass[length-i];
-                }
+    for(int i=1; i<lengthw; i++){
+        mass[lengthw-i-1]=i;
+            for(int j=lengthw-i; j<lengthw-1; j++){
+                if(word[lengthw-i-1]==word[j] && i!=1) mass[lengthw-i-1]=mass[lengthw-i];
             }
     }
-    for(int i=0; i<length-1; i++){
-        if(word[i]==word[length-1]) {
-            mass[length-1]=mass[i];
+
+    for(int i=0; i<lengthw-1; i++){
+        if(word[i]==word[lengthw-1]){
+            mass[lengthw-1]=mass[i];
             break;
         }
-        else mass[length-1] = mass[0]+1;
+        else mass[lengthw-1]=1 + mass[0];
     }
-//    for(int i=0; i<length; i++){
-//        printf("%d ", mass[i]);
-//   }
+
+    for(int i=0; i<lengthw; i++) printf("%d  ", mass[i]);
+    printf("\n");
+    return mass;
+}
+
+    int checkup(char *sentense, int lengths, int *tablew, int lengthw, char *word){
+
+    int count=0;
+
+    for(int i=lengthw-1; i<=lengths; ){
+
+        for(int j=1; j<lengthw; j++){
+            if((lengthw-j-1)==0){
+                count++;
+                i = i + lengthw;
+                break;
+            }
+            else if(sentense[i-j+1]!=word[lengthw-j]){
+                int t=0;
+                for(int k=0; k<lengthw; k++){
+                    if(sentense[i-j+1]==word[k]){
+                        t = tablew[k];
+                        break;
+                    }
+                    else t=0;
+                }
+                if(t) {
+                    i = i + t;
+                    break;
+                }
+                else i = i+lengthw-1;
+                break;
+            }
+        }
+    }
+    return count;
+
 }
 
 int main(){
 
-    char sentense[]="kakayata yeres + slowo";
-    char word[]= "slowo";
-    int length = strlen(word);
-    char *tablew = tab(word, length);
+    char sentense[]="adilet sidr";
+    char word[]= "sidr";
+    int lengthw = strlen(word);
+    int lengths = strlen(sentense);
+    int *tablew = table(word, lengthw);
+    int result = checkup(sentense, lengths, tablew, lengthw, word);
+    for(int i=0; i<lengthw; i++) printf("%c", word[i]);
+    printf("\n");
+    for(int i=0; i<lengths; i++) printf("%c", sentense[i]);
+    printf("\nThis word meets: %d times", result);
 
 
 }
