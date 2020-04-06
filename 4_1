@@ -62,7 +62,7 @@ int *table(char *word, int lengthw) {
 
 int main(){
 
-    char sentense[]="adilet sidr";
+    char sentense[]="aaa sidr";
     char word[]= "sidr";
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
