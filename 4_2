@@ -16,14 +16,14 @@ int converter(char *sent){
 
 int main(){
 
-    char sent[]="10";
-    int num=0, chek=0;
+    char sent[]="12a0";
+    int num=0;
     num = converter(sent);
     if(num==0){
         printf("Nums don't found");
         return 0;
     }
-    if(chek==(num%4)) printf("True");
+    if(0==(num%4)) printf("True");
     else printf("False");
 
 
