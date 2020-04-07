@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-int *table(char *word, int lengthw) {
-
+int *table(char *word) {
+    int lengthw = strlen(word);
     int *mass= (int*) malloc(lengthw*sizeof(int));
 
     for(int i=1; i<lengthw; i++){
@@ -20,15 +20,14 @@ int *table(char *word, int lengthw) {
         }
         else mass[lengthw-1]=1 + mass[0];
     }
-
-    for(int i=0; i<lengthw; i++) printf("%d  ", mass[i]);
-    printf("\n");
     return mass;
 }
 
-    int checkup(char *sentense, int lengths, int *tablew, int lengthw, char *word){
+    int checkup(char *sentense, int *tablew, char *word){
 
     int count=0;
+    int lengthw = strlen(word);
+    int lengths = strlen(sentense);
 
     for(int i=lengthw-1; i<=lengths; ){
 
@@ -62,12 +61,12 @@ int *table(char *word, int lengthw) {
 
 int main(){
 
-    char sentense[]="aaa sidr";
+    char sentense[]="sidr / slife sjasijf sidr NN g sidr";
     char word[]= "sidr";
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
-    int *tablew = table(word, lengthw);
-    int result = checkup(sentense, lengths, tablew, lengthw, word);
+    int *tablew = table(word);
+    int result = checkup(sentense, tablew,word);
     for(int i=0; i<lengthw; i++) printf("%c", word[i]);
     printf("\n");
     for(int i=0; i<lengths; i++) printf("%c", sentense[i]);
