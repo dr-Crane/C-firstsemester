@@ -8,9 +8,9 @@ int *table(char *word) {
 
     for(int i=1; i<lengthw; i++){
         mass[lengthw-i-1]=i;
-            for(int j=lengthw-i; j<lengthw-1; j++){
-                if(word[lengthw-i-1]==word[j] && i!=1) mass[lengthw-i-1]=mass[lengthw-i];
-            }
+        for(int j=lengthw-i; j<lengthw-1; j++){
+            if(word[lengthw-i-1]==word[j] && i!=1) mass[lengthw-i-1]=mass[lengthw-i];
+        }
     }
 
     for(int i=0; i<lengthw-1; i++){
@@ -23,7 +23,7 @@ int *table(char *word) {
     return mass;
 }
 
-    int checkup(char *sentense, int *tablew, char *word){
+int checkup(char *sentense, int *tablew, char *word){
 
     int count=0;
     int lengthw = strlen(word);
@@ -32,12 +32,7 @@ int *table(char *word) {
     for(int i=lengthw-1; i<=lengths; ){
 
         for(int j=1; j<lengthw; j++){
-            if((lengthw-j-1)==0){
-                count++;
-                i = i + lengthw;
-                break;
-            }
-            else if(sentense[i-j+1]!=word[lengthw-j]){
+            if(sentense[i-j+1]!=word[lengthw-j]){
                 int t=0;
                 for(int k=0; k<lengthw; k++){
                     if(sentense[i-j+1]==word[k]){
@@ -53,6 +48,11 @@ int *table(char *word) {
                 else i = i+lengthw-1;
                 break;
             }
+             else if((lengthw-j-1)==0){
+                count++;
+                i = i + lengthw-1;
+                break;
+            }
         }
     }
     return count;
@@ -61,7 +61,7 @@ int *table(char *word) {
 
 int main(){
 
-    char sentense[]="slowo sdfj slowo djfslowdf slw slowo";
+    char sentense[]="slowo sdkjfslowoslowo slwo slowo";
     char word[]= "slowo";
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
