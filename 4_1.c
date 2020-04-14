@@ -1,7 +1,13 @@
+/*
+ *  Подсчитать , сколько раз слово w встерчается в предложении p.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// Функция table строит таблицу , которая каждому символу подстроки ставит в соответсвие число ,зависящее от позиции
+// этого символа . Отсчёт ведётся с конца подстроки.
 int *table(char *word) {
     int lengthw = strlen(word);
     int *mass= (int*) malloc(lengthw*sizeof(int));
@@ -23,6 +29,8 @@ int *table(char *word) {
     return mass;
 }
 
+
+// Функция checkup считает количество вхождений подсроки в строку.
 int checkup(char *sentense, int *tablew, char *word){
 
     int count=0;
@@ -48,7 +56,7 @@ int checkup(char *sentense, int *tablew, char *word){
                 else i = i+lengthw-1;
                 break;
             }
-             else if((lengthw-j-1)==0){
+            else if((lengthw-j-1)==0){
                 count++;
                 i = i + lengthw-1;
                 break;
