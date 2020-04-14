@@ -63,6 +63,10 @@ int main(){
 
     char sentense[]="slowo sdkjfslowoslowo slwo slowo";
     char word[]= "slowo";
+    if(word<=0){
+        printf("ERROR");
+        return 0;
+    }
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
     int *tablew = table(word);
