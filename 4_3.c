@@ -16,18 +16,28 @@ char *copy_word(char *sent, int t){
         }
         else len_word++;
     }
-    char *word = (char*) malloc(len_word*sizeof(char));
-    for(int i=t; i<len_sent; i++){
-        for(int j=0, i=0; j<len_word;){
-            if((sent[i]==32)||(sent[i]==44)||(sent[i]==46)){
-                break;
-            }
-            else{
-                word[j]=sent[i];
-                break;
-            }
-        }
+    char *word = (char*) malloc(sizeof(char) * len_word+1);
+    word[len_word] = '\0';
+
+    int i=t, j=0;
+    while (sent[i]!=44&&sent[i]!=32&&sent[i]!=46){
+        word[j]=sent[i];
+        i++;
+        j++;
     }
+
+
+//    for(int i=t; i<len_sent; i++){
+//        for(int j=0, i=0; j<len_word;){
+//            if((sent[i]==32)||(sent[i]==44)||(sent[i]==46)){
+//                break;
+//            }
+//            else{
+//                word[j]=sent[i];
+//                break;
+//            }
+//        }
+//    }
     return word;
 }
 
@@ -57,13 +67,13 @@ int *table(char *word) {
 
 
 // Функция checkup считает количество вхождений подсроки в строку.
-int checkup(char *sentense, int *tablew, char *word){
+int checkup(char *sentense, int *tablew, char *word, int t){ // delete t
 
     int count=0;
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
 
-    for(int i=lengthw-1; i<=lengths; ){
+    for(int i=t+lengthw-1; i<=lengths; ){ // t на lengthw-1
 
         for(int j=1; j<lengthw; j++){
             if(sentense[i-j+1]!=word[lengthw-j]){
@@ -95,8 +105,8 @@ int checkup(char *sentense, int *tablew, char *word){
 
 int main(){
 
-    char sent[]="slowo sdkjfslowoslowo slwo slowo.";
-    int len_sent = strlen(sent);
+    char sent[]="qwerty uhiui uno hskdjfun ffdafh.";
+    unsigned int len_sent = strlen(sent);
     if(len_sent==0){
         printf("ERROR");
         return 0;
@@ -104,14 +114,15 @@ int main(){
     for(int i=0; i<len_sent; i++){
         if((sent[i]>96)&&(sent[i]<123)&&((sent[i-1]==32)||(sent[i-1]==44)||(i==0))){
             char *word = copy_word(sent, i);
-            int len_word = strlen(word);
+            unsigned int len_word = strlen(word);
             int *tab = table(word);
-            int count = checkup(sent, tab, word);
-            if(count == 0) for(int i=0; i<len_word; i++) printf("%c", word[i]);
+            int count = checkup(sent, tab, word, i);
+            if(count == 1) for(int t=0; t<len_word; t++) printf("%c", word[t]);
             printf("\n");
             free(word);
+            free(tab);
         }
+        else if(sent[i]==46) break;
     }
-
-
+    return 0;
 }
