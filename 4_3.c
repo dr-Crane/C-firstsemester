@@ -72,8 +72,8 @@ int checkup(char *sentense, int *tablew, char *word, int t){ // delete t
     int count=0;
     int lengthw = strlen(word);
     int lengths = strlen(sentense);
-
-    for(int i=t+lengthw-1; i<=lengths; ){ // t на lengthw-1
+// сделал замену t на lengthw-1 перед отправкой удалить комментарий на 75 и 95 строках    !!!!
+    for(int i=t+lengthw-1; i<=lengths; ){
 
         for(int j=1; j<lengthw; j++){
             if(sentense[i-j+1]!=word[lengthw-j]){
@@ -92,7 +92,7 @@ int checkup(char *sentense, int *tablew, char *word, int t){ // delete t
                 else i = i+lengthw-1;
                 break;
             }
-            else if((lengthw-j-1)==0){
+            else if((lengthw-j-1)==0/*&&(sentense[i-j]==32||sentense[i-j]==44)*/){
                 count++;
                 i = i + lengthw-1;
                 break;
@@ -105,7 +105,7 @@ int checkup(char *sentense, int *tablew, char *word, int t){ // delete t
 
 int main(){
 
-    char sent[]="qwerty uhiui uno hskdjfun ffdafh.";
+    char sent[]="qwerty uhiui uno uno uno djfun ffdafh.";
     unsigned int len_sent = strlen(sent);
     if(len_sent==0){
         printf("ERROR");
