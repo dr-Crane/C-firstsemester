@@ -22,12 +22,16 @@ int *create_mas(int N, int min, int max) {
 
 
 
-void main()
+int main()
 {
     srand(time(NULL));
     int size, min, max;
     printf("Enter a size of matrix:\n");
     scanf("%d", &size);
+    if(size<0) {
+        printf("Size can't be lower then zero");
+        return 0;
+    }
     printf("Enter floor:\n");
     int a = scanf("%d", &min);
     if(a==1){
@@ -54,8 +58,8 @@ void main()
             printf("\nCount: %d", count);
             free(a);
         }
-        printf("ERROR");
+        else printf("ERROR");
     }
-    printf("ERROR");
+    else printf("ERROR");
 
 }
