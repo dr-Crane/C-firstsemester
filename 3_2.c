@@ -18,7 +18,7 @@ int **create_matrix(int height, int width, int min, int max) {
                     matrix[i][j] = rand() % (max-min+1) + min;
                 }
             } else {
-                for (int i = 0; i < width; i++)
+                for (int i = 0; i < heigth; i++)
                     free(matrix[i]);
                 return NULL;
             }
