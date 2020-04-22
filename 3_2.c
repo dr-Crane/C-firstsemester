@@ -18,8 +18,8 @@ int **create_matrix(int height, int width, int min, int max) {
                     matrix[i][j] = rand() % (max-min+1) + min;
                 }
             } else {
-                for (int i = 0; i < heigth; i++)
-                    free(matrix[i]);
+                for (int k = 0; k < i; k++)
+                    free(matrix[k]);
                 return NULL;
             }
         }
@@ -29,7 +29,7 @@ int **create_matrix(int height, int width, int min, int max) {
     return matrix;
 }
 
-void main()
+int main()
 {
     srand(time(NULL));
     int height = rand() % 5 + 2;
@@ -41,7 +41,7 @@ void main()
     printf("Enter roof:\n");
     scanf("%d", &max);
     int **matrix = create_matrix(height, width, min, max);
-
+    if(matrix == NULL) return -1;
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) printf("%d ", matrix[i][j]);
         printf("\n");
@@ -60,7 +60,7 @@ void main()
     }
     printf("\n");
     // Вывод матрицы
-    free(matrix); 
+    free(matrix);
 
     printf("Count of \"special\" elements in matrix : %d", count);
 
